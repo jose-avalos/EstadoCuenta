@@ -1,0 +1,48 @@
+﻿@model List<EstadoCuentaWeb.Models.MovimientoDTO>
+
+@{
+    ViewData["Title"] = "Historial de Transacciones";
+}
+
+<h2>Historial de Transacciones</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Monto</th>
+            <th>Tipo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count == 0)
+        {
+            <tr><td colspan="4">No hay transacciones disponibles.</td></tr>
+        }
+        else
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Fecha.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@item.Descripcion</td>
+                    <td>@item.Monto.ToString("C")</td>
+                    <td>
+                        <span class="badge @(item.TipoMovimiento == "COMPRA" ? "bg-danger" : "bg-success")">
+                            @item.TipoMovimiento
+                        </span>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<a href="@Url.Action("ExportarPdf", "Historial", new { clienteId = 1 })" class="btn btn-primary">
+    Descargar Historial en PDF
+</a>

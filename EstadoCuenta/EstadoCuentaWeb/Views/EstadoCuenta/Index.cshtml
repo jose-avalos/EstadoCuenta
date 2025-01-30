@@ -1,0 +1,43 @@
+﻿@model EstadoCuentaDTO
+
+@{
+    ViewData["Title"] = "Estado de Cuenta";
+    var compras = ViewBag.Compras as List<MovimientoDTO> ?? new List<MovimientoDTO>();
+
+}
+
+<h2>Estado de Cuenta</h2>
+
+<table class="table">
+    <tr><th>Cliente</th><td>@Model.NombreCliente</td></tr>
+    <tr><th>Número de Tarjeta</th><td>@Model.NoTarjetaCredito</td></tr>
+    <tr><th>Saldo</th><td>@Model.Saldo.ToString("C")</td></tr>
+    <tr><th>Límite de Crédito</th><td>@Model.LimiteCredito.ToString("C")</td></tr>
+    <tr><th>Saldo Disponible</th><td>@Model.SaldoDisponible.ToString("C")</td></tr>
+    <tr><th>Interés Bonificable</th><td>@Model.InteresBonificable.ToString("C")</td></tr>
+    <tr><th>Cuota Mínima</th><td>@Model.CuotaMinima.ToString("C")</td></tr>
+    <tr><th>Monto Total a Pagar</th><td>@Model.MontoTotalPagar.ToString("C")</td></tr>
+</table>
+<h3>Compras Realizadas</h3>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Fecha</th><th>Descripción</th><th>Monto</th></tr>
+    </thead>
+    <tbody>
+        @if (!compras.Any())
+        {
+            <tr><td colspan="3">No hay compras registradas.</td></tr>
+        }
+        else
+        {
+            @foreach (var compra in compras)
+            {
+                <tr>
+                    <td>@compra.Fecha.ToString("yyyy-MM-dd")</td>
+                    <td>@compra.Descripcion</td>
+                    <td>@compra.Monto.ToString("C")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

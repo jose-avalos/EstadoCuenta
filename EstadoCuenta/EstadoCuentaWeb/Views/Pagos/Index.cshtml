@@ -1,0 +1,23 @@
+﻿@model EstadoCuentaWeb.Models.PagoDTO
+
+@{
+    ViewData["Title"] = "Realizar Pago";
+}
+
+<h2>Realizar Pago</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="RealizarPago" method="post">
+    <div class="form-group">
+        <input type="number" class="form-control" value="1" asp-for="ClienteID" required hidden>
+    </div>
+    <div class="form-group">
+        <label for="Monto">Monto</label>
+        <input type="Text" step="0.01" class="form-control" asp-for="Monto" required>
+    </div>
+    <button type="submit" class="btn btn-success">Realizar Pago</button>
+</form>

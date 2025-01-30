@@ -1,0 +1,27 @@
+﻿@model EstadoCuentaWeb.Models.CompraDTO
+
+@{
+    ViewData["Title"] = "Registrar Compra";
+}
+
+<h2>Registrar Compra</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="RegistrarCompra" method="post">
+    <div class="form-group">
+        <input type="number" class="form-control" asp-for="ClienteID" value="1" hidden required>
+    </div>
+    <div class="form-group">
+        <label for="Descripcion">Descripción</label>
+        <input type="text" class="form-control" asp-for="Descripcion" required>
+    </div>
+    <div class="form-group">
+        <label for="Monto">Monto</label>
+        <input type="number" step="0.01" class="form-control" asp-for="Monto" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar Compra</button>
+</form>
