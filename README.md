@@ -1,4 +1,4 @@
-# EstadoCuenta
+# Instrucciones de prueba EstadoCuenta
 Estado Cuenta manejo de compras y pagos
 
 El proyecto EstadoCuenta es una solución compuesta por dos aplicaciones principales:
